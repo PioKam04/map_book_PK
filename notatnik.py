@@ -28,3 +28,12 @@ def map_all_users(users):
 
         url=(f'https://pl.wikipedia.org/wiki/{user['location']}')
         response=requests.get(url)
+        response_html=BeautifulSoup(response.text,'html.parser')
+        longitude=float(response_html.select('.longitude')[1].text.replace(',','.'))
+        latitude=float(response_html.select('.latitude')[1].text.replace(',','.'))
+        print(longitude,latitude)
+        folium.Marker(location=[latitude, longitude], popup=f'{user['name']},postów: {user['location']},\n{user['location']}',
+                      icon=folium.Icon(color='blue')).add_to(map)
+
+    map.save(f'map.html')
+map_all_users(users)
