@@ -1,5 +1,5 @@
 from models.data import users
-from utils.crud import read, add_user,search,remove_user,update_user,map_single_users,map_all_users
+from utl.crud import read, add_user,search,remove_user,update_user,map_single_users,map_all_users
 
 if __name__ == '__main__':
     print(f'witaj {users[0]["name"]}')
